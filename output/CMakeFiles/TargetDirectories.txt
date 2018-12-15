@@ -1,0 +1,3 @@
+/Users/jiangtao/vsst/angemon/output/CMakeFiles/rebuild_cache.dir
+/Users/jiangtao/vsst/angemon/output/CMakeFiles/edit_cache.dir
+/Users/jiangtao/vsst/angemon/output/CMakeFiles/angemon.dir
