@@ -72,3 +72,6 @@ Thumbs.db
 *.exe
 /bin
 /output
+
+/cmake-build-debug
+
