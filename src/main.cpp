@@ -1,50 +1,38 @@
+//
+// main.cpp
+// ~~~~~~~~
+//
+// Copyright (c) 2003-2018 Christopher M. Kohlhoff (chris at kohlhoff dot com)
+//
+// Distributed under the Boost Software License, Version 1.0. (See accompanying
+// file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+//
 
-
-#include <boost/asio.hpp>
+#include <asio.hpp>
 #include <iostream>
-using namespace boost::asio;
-class Server {
-  typedef ip::tcp::socket socket_type;
-  typedef std::shared_ptr<socket_type> sock_ptr;
+#include <string>
+#include "server.hpp"
 
- public:
-  Server() : m_acceptor(m_io, ip::tcp::endpoint(ip::tcp::v4(), 6688)) {
-    accept();
-  }
-  void run() { m_io.run(); }
-
- private:
-  void accept() {
-    sock_ptr sock(new socket_type(m_io));
-    m_acceptor.async_accept(*sock, std::bind(&Server::accept_handler, this,
-                                             std::placeholders::_1, sock));
-  }
-  void accept_handler(const boost::system::error_code& ec, sock_ptr sock) {
-    if (ec) {
-      return;
-    }
-    std::cout << "client:";
-    std::cout << sock->remote_endpoint().address() << std::endl;
-    sock->async_write_some(
-        buffer("hello asio"),
-        std::bind(&Server::write_handler, this, std::placeholders::_1));
-    accept();
-  }
-  void write_handler(const boost::system::error_code&) {
-    std::cout << "send msg complete." << std::endl;
-  }
-
- private:
-  io_service m_io;
-  ip::tcp::acceptor m_acceptor;
-};
-int main() {
+int main(int argc, char* argv[]) {
   try {
-    std::cout << "server" << std::endl;
-    Server svr;
-    svr.run();
+    // Check command line arguments.
+    if (argc != 4) {
+      std::cerr << "Usage: http_server <address> <port> <doc_root>\n";
+      std::cerr << "  For IPv4, try:\n";
+      std::cerr << "    receiver 0.0.0.0 80 .\n";
+      std::cerr << "  For IPv6, try:\n";
+      std::cerr << "    receiver 0::0 80 .\n";
+      return 1;
+    }
+
+    // Initialise the server.
+    http::server::server s(argv[1], argv[2], argv[3]);
+
+    // Run the server until stopped.
+    s.run();
   } catch (std::exception& e) {
-    std::cout << e.what() << std::endl;
+    std::cerr << "exception: " << e.what() << "\n";
   }
+
   return 0;
 }
