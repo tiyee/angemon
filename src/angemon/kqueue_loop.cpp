@@ -1,5 +1,5 @@
 #include "kqueue_loop.h"
-
+namespace angemon {
 kqueue_loop::kqueue_loop(int lfd) : _lfd(lfd) { _efd = kqueue(); }
 bool kqueue_loop::_register(struct Conn conn, Event evt) {
   struct kevent ev[2];
@@ -50,3 +50,5 @@ std::vector<struct EvtItem> kqueue_loop::poll(int ms) {
   }
   return items;
 }
+
+} // namespace angemon

@@ -7,5 +7,5 @@ add_compile_options(-std=c++11)
 
 
 
-file(GLOB DIR_SRCS "src/*")
-add_executable(${PROJECT_NAME} ${DIR_SRCS})
+file(GLOB DIR_SRCS "src/angemon/*")
+add_executable(${PROJECT_NAME} "main.cpp" ${DIR_SRCS})
