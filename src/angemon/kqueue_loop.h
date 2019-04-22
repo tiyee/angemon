@@ -27,6 +27,7 @@ public:
   void unregister(struct Conn conn, Event ev);
   void modify(struct Conn conn, Event ev);
   std::vector<struct EvtItem> poll(int ms);
+  void close();
 };
 
 } // namespace angemon

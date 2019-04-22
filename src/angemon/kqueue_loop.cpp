@@ -50,5 +50,6 @@ std::vector<struct EvtItem> kqueue_loop::poll(int ms) {
   }
   return items;
 }
+void kqueue_loop::close() {}
 
 } // namespace angemon
