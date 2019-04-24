@@ -19,14 +19,14 @@ class kqueue_loop : public LoopImpl {
 private:
   int _efd;
   int _lfd;
-  bool _register(struct Conn conn, Event ev);
+  bool _register(Conn conn, Event ev);
 
 public:
   kqueue_loop(int lfd);
-  void register_(struct Conn conn, Event ev);
-  void unregister(struct Conn conn, Event ev);
-  void modify(struct Conn conn, Event ev);
-  std::vector<struct EvtItem> poll(int ms);
+  void register_(Conn conn, Event ev);
+  void unregister(Conn conn, Event ev);
+  void modify(Conn conn, Event ev);
+  std::vector<EvtItem> poll(int ms);
   void close();
 };
 

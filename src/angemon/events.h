@@ -10,7 +10,7 @@ enum Event {
   EVENT_ERROR = 128
 };
 struct EvtItem {
-  struct Conn conn;
+  Conn conn;
   Event evt;
 };
 } // namespace angemon
