@@ -37,18 +37,29 @@ std::vector<EvtItem> kqueue_loop::poll(size_t ms) {
     struct EvtItem item;
     if (events == EVFILT_READ) {
       if (fd == _lfd) {
-        item = {Conn(fd), EVENT_ACCEPT};
+        item = {active_(fd), EVENT_ACCEPT};
       } else {
-        item = {Conn(fd), EVENT_READ};
+        item = {active_(fd), EVENT_READ};
       }
     } else if (events == EVFILT_WRITE) {
-      item = {Conn(fd), EVENT_WRITE};
+      item = {active_(fd), EVENT_WRITE};
     } else {
       printf("unknown event");
     }
     items.push_back(item);
   }
   return items;
+}
+std::map<int, Conn> kqueue_loop::_active;
+Conn kqueue_loop::active_(int fd) {
+  auto iter = kqueue_loop::_active.find(fd);
+  if (iter != kqueue_loop::_active.end()) {
+    return iter->second;
+  } else {
+    auto conn = Conn(fd);
+    kqueue_loop::_active[fd] = conn;
+    return conn;
+  }
 }
 void kqueue_loop::modify(Conn conn, Event ev) {}
 void kqueue_loop::close() {}

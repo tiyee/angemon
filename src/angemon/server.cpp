@@ -16,6 +16,7 @@ Server::Server(const char *ip, int port) {
     printf("lst error ");
   }
   setNonBlock(_lfd);
+
   _loop = new kqueue_loop(_lfd);
 
   _loop->register_(Conn(_lfd), Event::EVENT_READ);

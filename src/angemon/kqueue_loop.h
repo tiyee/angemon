@@ -6,6 +6,7 @@
 #include "loop_impl.h"
 #include <arpa/inet.h>
 #include <iostream>
+#include <map>
 #include <sstream>
 #include <stddef.h>
 #include <string>
@@ -19,14 +20,17 @@ class kqueue_loop : public LoopImpl {
 private:
   int _efd;
   int _lfd;
+
   bool _register(Conn conn, Event ev);
 
 public:
+  static std::map<int, Conn> _active;
   kqueue_loop(int lfd);
   void register_(Conn conn, Event ev);
   void unregister(Conn conn, Event ev);
   void modify(Conn conn, Event ev);
   std::vector<EvtItem> poll(size_t ms);
+  Conn active_(int fd);
   void close();
 };
 
