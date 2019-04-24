@@ -26,7 +26,7 @@ public:
   void register_(Conn conn, Event ev);
   void unregister(Conn conn, Event ev);
   void modify(Conn conn, Event ev);
-  std::vector<EvtItem> poll(int ms);
+  std::vector<EvtItem> poll(size_t ms);
   void close();
 };
 

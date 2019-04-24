@@ -17,13 +17,13 @@ bool kqueue_loop::_register(struct Conn conn, Event evt) {
   }
   return true;
 }
-void kqueue_loop::register_(struct Conn conn, Event ev) { _register(conn, ev); }
-void kqueue_loop::unregister(struct Conn conn, Event evt) {
+void kqueue_loop::register_(Conn conn, Event ev) { _register(conn, ev); }
+void kqueue_loop::unregister(Conn conn, Event evt) {
   struct kevent ev[1];
   EV_SET(&ev[0], conn.fd, evt == EVENT_READ ? EVFILT_READ : EVFILT_WRITE,
          EV_DELETE, 0, 0, nullptr);
 }
-std::vector<struct EvtItem> kqueue_loop::poll(int ms) {
+std::vector<EvtItem> kqueue_loop::poll(size_t ms) {
   struct timespec timeout;
   timeout.tv_sec = ms / 1000;
   timeout.tv_nsec = (ms % 1000) * 1000 * 1000;
@@ -50,6 +50,7 @@ std::vector<struct EvtItem> kqueue_loop::poll(int ms) {
   }
   return items;
 }
+void kqueue_loop::modify(Conn conn, Event ev) {}
 void kqueue_loop::close() {}
 
 } // namespace angemon

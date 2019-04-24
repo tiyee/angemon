@@ -9,8 +9,6 @@ struct Conn {
   size_t written;
   bool writeEnabled;
   Conn(int fd_ = 0) : fd(fd_), written(0), writeEnabled(false){};
-  // Conn(const Conn &) = delete;
-  // Conn &operator=(const Conn) = delete;
 };
 } // namespace angemon
 
