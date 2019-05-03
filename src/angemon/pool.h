@@ -1,20 +1,47 @@
-#ifndef POOL_H
-#define POOL_H
-#include <iostream>
-#include <list>
-namespace angemon {
+#ifndef ANGEMON_POOL_H
+#define ANGEMON_POOL_H
+
+#include "common.h"
 using std::list;
-template <class T, int N> class Pool {
+namespace angemon {
+template <class T> class Pool {
+
 private:
-  list<T *> _items;
-  int _length;
+  static list<T *> _items;
 
 public:
-  Pool();
-  int put(T const &t);
-  T *get();
-  int size();
+  const size_t MAX_ITEMS = 1024;
+
+  inline Pool() = default;
+
+  inline ~Pool() = default;
+
+  inline size_t put(T *t);
+
+  inline T *get();
 };
+
+template <class T> std::list<T *> Pool<T>::_items;
+
+template <class T> T *Pool<T>::get() {
+
+  if (!_items.empty()) {
+
+    auto it = _items.begin();
+    T *p = *it;
+    _items.pop_front();
+    return p;
+  } else {
+    return (T *)malloc(sizeof(T));
+    ;
+  }
+}
+
+template <class T> size_t Pool<T>::put(T *t) {
+
+  _items.push_back(t);
+  return _items.size();
+}
 
 } // namespace angemon
 
