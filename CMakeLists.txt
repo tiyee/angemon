@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 project(angemon)
 set(CMAKE_CXX_STANDARD 11)
+SET(CMAKE_CXX_COMPILER /usr/bin/clang)
 set(CMAKE_CXX_FLAGS " -stdlib=libc++")
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -m64 -O2")
