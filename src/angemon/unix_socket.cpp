@@ -110,7 +110,7 @@ namespace angemon {
                 break;
             }
         }
-
+        LOG("%s",buff_.data())
         e->ctx = new Context(buff_);
         Request req(this,e);
         req.run();

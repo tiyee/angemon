@@ -50,7 +50,7 @@ namespace angemon {
                    item->ev_flags = E_READ;
                }
                 if( events_in[i].events & EPOLLOUT){
-                  
+
                     item->ev_flags = E_WRITE;
                 }
 
