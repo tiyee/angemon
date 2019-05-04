@@ -6,7 +6,7 @@ namespace angemon {
 struct Context
 {
     string buff ;
-    Context(string buff_){
+    explicit Context(string buff_){
         this->buff = std::move(buff_);
     }
 };
