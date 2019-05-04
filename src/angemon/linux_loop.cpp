@@ -1,5 +1,5 @@
 #include "linux_loop.h"
-#include <sys/epoll.h>
+
 using angemon::event::E_READ;
 using angemon::event::E_WRITE;
 namespace angemon {

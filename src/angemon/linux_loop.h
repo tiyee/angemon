@@ -1,6 +1,7 @@
 #ifndef LINUX_LOOP_H
 #define LINUX_LOOP_H
 #include"loop.h"
+#include <sys/epoll.h>
 using namespace angemon::base;
 namespace angemon {
 namespace linux {
