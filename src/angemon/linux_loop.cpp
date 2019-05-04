@@ -44,13 +44,13 @@ namespace angemon {
             std::vector<Event *> items;
             for (int i = 0; i < n; ++i) {
                 int fd = static_cast<int>(events_in[i].data.fd);
-
+                auto item = _active[fd];
                if( events_in[i].events & EPOLLIN){
-                   item = _active[fd];
+
                    item->ev_flags = E_READ;
                }
                 if( events_in[i].events & EPOLLOUT){
-                    item = _active[fd];
+                  
                     item->ev_flags = E_WRITE;
                 }
 
