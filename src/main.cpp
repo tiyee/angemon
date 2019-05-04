@@ -1,14 +1,20 @@
-#include "unix_socket.cpp"
+#include "socket.cpp"
+#ifdef OS_MACOSX
+#include "unix_loop.cpp"
+#endif
+#ifdef OS_LINUX
 #include "linux_loop.cpp"
-#include "loop.h"
-using namespace std;
-using namespace angemon::base;
-using angemon::UnixSocket;
-using namespace angemon::linux;
-int main() {
- angemon::base::Loop * loop_ = new  angemon::linux::Loop();
-  UnixSocket sock("127.0.0.1", 8001, loop_);
+#endif
 
+
+#include "base_loop.h"
+using namespace std;
+using  angemon::base::LoopImp;
+using angemon::Socket;
+using  angemon::Loop;
+int main() {
+LoopImp * loop_ = new  Loop();
+  Socket sock("127.0.0.1", 8001, loop_);
   int lfd = sock._create();
   if (lfd < 0) {
     cout << "error" << endl;

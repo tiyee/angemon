@@ -1,12 +1,12 @@
 #ifndef LINUX_LOOP_H
 #define LINUX_LOOP_H
-#include"loop.h"
+#include"base_loop.h"
 #include <sys/epoll.h>
 using namespace angemon::base;
 namespace angemon {
-namespace linux {
 
-class Loop:public base::Loop
+
+class Loop:public base::LoopImp
 {
 private:
     map<int, Event *> _active;
@@ -27,5 +27,5 @@ public:
 
     virtual vector<Event *> poll() final;
 };
-}}
+}
 #endif // LINUX_LOOP_H

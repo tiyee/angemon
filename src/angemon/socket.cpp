@@ -1,4 +1,4 @@
-#include "unix_socket.h"
+#include "socket.h"
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
@@ -12,9 +12,9 @@ using angemon::event::E_READ;
 using angemon::event::E_WRITE;
 namespace angemon {
 
-    UnixSocket::UnixSocket(const char *ip, unsigned int port, Loop *&loop_) : _ip(ip), _port(port), _loop(loop_) {};
+    Socket::Socket(const char *ip, unsigned int port, LoopImp *&loop_) : _ip(ip), _port(port), _loop(loop_) {};
 
-    void UnixSocket::setNonBlock(int fd_) {
+    void Socket::setNonBlock(int fd_) {
         auto currFlags = fcntl(fd_, F_GETFL, 0);
         if (currFlags < 0) {
             std::cerr << "fcntl get flags failed" << std::endl;
@@ -27,7 +27,7 @@ namespace angemon {
         };
     };
 
-    int UnixSocket::_create() {
+    int Socket::_create() {
 
         int fd = ::socket(AF_INET, SOCK_STREAM, 0);
         if (fd == -1) {
@@ -56,7 +56,7 @@ namespace angemon {
         return fd;
     };
 
-    int UnixSocket::accept(int fd_) {
+    int Socket::accept(int fd_) {
         int client = ::accept(fd_, nullptr, nullptr);
         if (client == -1) {
             LOG_ERR("Accept failed. lfd=%d", fd_);
@@ -70,7 +70,7 @@ namespace angemon {
         return client;
     }
 
-    int UnixSocket::_read(Event *&e) {
+    int Socket::_read(Event *&e) {
         auto fd_ = e->fd;
         std::string buff_;
         size_t realSize = 0;
@@ -121,7 +121,7 @@ namespace angemon {
 
     };
 
-    int UnixSocket::_write(Event *&e) {
+    int Socket::_write(Event *&e) {
 
         auto buf = e->ctx->buff.data();
         LOG("%s##########", buf)
@@ -143,14 +143,14 @@ namespace angemon {
 
     };
 
-    void UnixSocket::_close(Event *&e) {
+    void Socket::_close(Event *&e) {
         int fd = e->fd;
         this->_loop->unregister_(e);
         delete e;
         ::close(fd);
     };
 
-    void UnixSocket::_start() {
+    void Socket::_start() {
 
         auto e = new Event(_lfd, E_READ);
         this->_loop->register_(e);

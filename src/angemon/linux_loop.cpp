@@ -3,7 +3,7 @@
 using angemon::event::E_READ;
 using angemon::event::E_WRITE;
 namespace angemon {
-    namespace linux {
+
         Loop::Loop() {
             _efd = epoll_create(MAXEVENTS);
             if (-1 == _efd) {
@@ -60,6 +60,6 @@ namespace angemon {
             return items;
         }
 
-    }
+
 }
 

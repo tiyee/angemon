@@ -8,7 +8,7 @@ using std::vector;
 
 namespace angemon {
 namespace base {
-class Loop {
+class LoopImp {
 public:
   virtual void register_(Event *&ev) = 0;
   virtual void unregister_(Event *&ev) = 0;

@@ -1,6 +1,6 @@
 #include "request.h"
 namespace angemon {
-Request::Request(BaseSocket * sock_,Event* ctx_):_socket(sock_),evt(ctx_)
+Request::Request(SocketImp * sock_,Event* ctx_):_socket(sock_),evt(ctx_)
 {
 
 }

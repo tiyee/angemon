@@ -4,8 +4,6 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_C_STANDARD 11)
 add_definitions(-std=c++11)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 ")
-#SET(CMAKE_C_COMPILER "/usr/bin/clang")
-#SET (CMAKE_CXX_COMPILER  "/usr/bin/clang++")
 #set(CMAKE_CXX_FLAGS " ${CMAKE_CXX_FLAGS} -stdlib=libc++")
 
 
@@ -36,6 +34,6 @@ include_directories(./ ${PROJECT_SOURCE_DIR}/src/angemon)
 #
 include_directories( "/usr/include/c++/")
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/angemon)
-add_executable(angemon ${DIR_SRCS})
-target_link_libraries(angemon  Sock Ep Re)
+add_executable(angemon src/main.cpp)
+target_link_libraries(angemon  Sock Loop Req)
 

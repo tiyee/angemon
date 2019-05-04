@@ -24,9 +24,6 @@ private:
 
 public:
   inline Conn();
-
-
-
   Conn(const Conn &conn) = delete;
 
   Conn &operator=(const Conn &conn) = delete;

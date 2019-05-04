@@ -1,34 +1,32 @@
 #ifndef UNIX_LOOP_H
 #define UNIX_LOOP_H
 
-#include "loop.h"
+#include "base_loop.h"
 
-using angemon::base::Loop;
+using angemon::base::LoopImp;
 using angemon::event::Event;
 using std::map;
 using std::vector;
 namespace angemon {
-    namespace unix {
-        class UnixLoop : public Loop {
+
+        class Loop : public LoopImp {
         private:
             map<int, Event *> _active;
             int _kfd;
-
-
         public:
-            UnixLoop();
+            Loop();
 
-            ~UnixLoop() = default;
+            ~Loop() = default;
 
-            virtual void register_(Event *&evt) final;
+             void register_(Event *&evt) final;
 
-            virtual void unregister_(Event *&evt) final;
+             void unregister_(Event *&evt) final;
 
-            virtual void modify(Event *&evt, int ev) final;
+             void modify(Event *&evt, int ev) final;
 
-            virtual vector<Event *> poll() final;
+             vector<Event *> poll() final;
         };
-    } // namespace unix
+
 } // namespace angemon
 
 #endif // UNIX_LOOP_H

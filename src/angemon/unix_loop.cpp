@@ -7,11 +7,11 @@
 using angemon::event::E_READ;
 using angemon::event::E_WRITE;
 namespace angemon {
-namespace unix {
-UnixLoop::UnixLoop() : _kfd(kqueue()){
+
+Loop::Loop() : _kfd(kqueue()){
 
 };
-void UnixLoop::register_(Event *&evt) {
+void Loop::register_(Event *&evt) {
 
   struct kevent evs[1];
   int n = 0;
@@ -32,7 +32,7 @@ void UnixLoop::register_(Event *&evt) {
   _active[evt->fd] = evt;
 };
 
-void UnixLoop::unregister_(Event *&evt) {
+void Loop::unregister_(Event *&evt) {
   struct kevent ev[1];
   EV_SET(&ev[0], evt->fd, evt->ev_flags == E_READ ? EVFILT_READ : EVFILT_WRITE,
          EV_DELETE, 0, 0, nullptr);
@@ -47,7 +47,7 @@ void UnixLoop::unregister_(Event *&evt) {
   // delete evt;
 };
 
-void UnixLoop::modify(Event *&evt, int ev) {
+void Loop::modify(Event *&evt, int ev) {
   struct kevent kev[2];
   EV_SET(&kev[0], evt->fd, evt->ev_flags == E_READ ? EVFILT_READ : EVFILT_WRITE,
          EV_DELETE, 0, 0, nullptr);
@@ -62,7 +62,7 @@ void UnixLoop::modify(Event *&evt, int ev) {
   evt->ev_flags = ev;
 };
 
-vector<Event *> UnixLoop::poll() {
+vector<Event *> Loop::poll() {
   timespec timeout = {};
   timeout.tv_sec = 3000 / 1000;
   timeout.tv_nsec = (3000 % 1000) * 1000 * 1000;
@@ -94,5 +94,5 @@ vector<Event *> UnixLoop::poll() {
   return items;
 };
 
-} // namespace unix
+
 } // namespace angemon

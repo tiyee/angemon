@@ -5,7 +5,7 @@
 using angemon::event::Event;
 namespace angemon {
 namespace base {
-class BaseSocket
+class SocketImp
 {
 public:
     virtual int _create()=0;

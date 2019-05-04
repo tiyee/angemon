@@ -3,15 +3,15 @@
 #include"base_socket.h"
 #include "event.h"
 using angemon::event::Event;
-using angemon::base::BaseSocket;
+using angemon::base::SocketImp;
 namespace angemon {
 class Request
 {
 private:
-    BaseSocket* _socket;
+    SocketImp* _socket;
     Event* evt;
 public:
-    Request(BaseSocket* sock_,Event* ctx_);
+    Request(SocketImp* sock_,Event* ctx_);
     void run();
 };
 }
