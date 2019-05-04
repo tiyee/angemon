@@ -43,7 +43,8 @@ namespace angemon {
             int n =epoll_wait(_efd, events_in, MAXEVENTS,-1);
             std::vector<Event *> items;
             for (int i = 0; i < n; ++i) {
-                int fd = events_in[i].events.data.fd;
+                int fd = static_cast<int>(events_in[i].events.data.fd);
+           
                if( events_in[i].events & EPOLLIN){
                    item = _active[fd];
                    item->ev_flags = E_READ;
