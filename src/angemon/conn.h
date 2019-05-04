@@ -1,8 +1,7 @@
 #ifndef ANGEMON_CONN_H
 #define ANGEMON_CONN_H
 
-#include "common.h"
-#include "ctime"
+#include "angemon.h"
 #include "pool.h"
 namespace angemon {
 namespace pools {
@@ -60,21 +59,12 @@ public:
 Pool<Conn> Conn::_pool;
 
 Conn::Conn()
-    : _buff(""), _buff_read(0), _buff_write(0),_buff_cap(0), _fd(0), _evt(0),
+    : _buff(""), _buff_read(0), _buff_write(0), _buff_cap(0), _fd(0), _evt(0),
       _ctime(time(nullptr)), _mtime(time(nullptr)) {}
 
+void *Conn::operator new(size_t t) { return Conn::_pool.get(); }
 
-
-void *Conn::operator new(size_t t) {
-
-  return Conn::_pool.get();
-}
-
-void Conn::operator delete(void *ptr) {
-
-
-  Conn::_pool.put((Conn *)ptr);
-}
+void Conn::operator delete(void *ptr) { Conn::_pool.put((Conn *)ptr); }
 
 inline int Conn::FD() { return this->_fd; };
 
@@ -103,9 +93,7 @@ inline void Conn::BuffCap(size_t t_) { this->_buff_cap = t_; };
 
 inline string Conn::Buff() { return this->_buff; };
 
-inline void Conn::Buff(string buff_) {
-  this->_buff = std::move(buff_);
-}
+inline void Conn::Buff(string buff_) { this->_buff = std::move(buff_); }
 inline time_t Conn::Ctime() { return this->_ctime; }
 inline time_t Conn::Mtime() { return this->_mtime; }
 inline void Conn::Mtime(time_t t_) { this->_mtime = t_; }

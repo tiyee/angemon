@@ -2,7 +2,7 @@ aux_source_directory(. DIR_LIB_SRCS)
 add_library(Req  request.cpp request.h)
 if (CMAKE_HOST_APPLE)
 add_library(Sock socket.cpp socket.h)
-add_library(Loop base_loop.h unix_loop.cpp unix_Loop.h)
+add_library(Loop base_loop.h unix_loop.cpp unix_loop.h)
 
 
 elseif (CMAKE_HOST_UNIX)

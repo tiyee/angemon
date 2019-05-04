@@ -8,9 +8,10 @@ using angemon::event::E_READ;
 using angemon::event::E_WRITE;
 namespace angemon {
 
-Loop::Loop() : _kfd(kqueue()){
+Loop::Loop()
+    : _kfd(kqueue()){
 
-};
+      };
 void Loop::register_(Event *&evt) {
 
   struct kevent evs[1];
@@ -69,12 +70,12 @@ vector<Event *> Loop::poll() {
   const int kMaxints = 20;
   struct kevent activeEvs[kMaxints];
   int n = kevent(_kfd, nullptr, 0, activeEvs, kMaxints, &timeout);
-  LOG("poll return n=%d",n)
+  LOG("poll return n=%d", n)
   std::vector<Event *> items;
   for (int i = 0; i < n; ++i) {
     int fd = activeEvs[i].ident;
     int events = activeEvs[i].filter;
-      LOG("fd=%d filter=%d",fd,events)
+    LOG("fd=%d filter=%d", fd, events)
     Event *item = nullptr;
     if (events == EVFILT_READ) {
       item = _active[fd];
@@ -82,7 +83,7 @@ vector<Event *> Loop::poll() {
 
     } else if (events == EVFILT_WRITE) {
       item = _active[fd];
-     LOG("poll fd=%d",item->fd);
+      LOG("poll fd=%d", item->fd);
       item->ev_flags = E_WRITE;
 
     } else {
@@ -93,6 +94,5 @@ vector<Event *> Loop::poll() {
   }
   return items;
 };
-
 
 } // namespace angemon

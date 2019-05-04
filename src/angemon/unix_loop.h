@@ -13,23 +13,24 @@ using std::map;
 using std::vector;
 namespace angemon {
 
-        class Loop : public LoopImp {
-        private:
-            map<int, Event *> _active;
-            int _kfd;
-        public:
-            Loop();
+class Loop : public LoopImp {
+private:
+  map<int, Event *> _active;
+  int _kfd;
 
-            ~Loop() = default;
+public:
+  Loop();
 
-             void register_(Event *&evt) final;
+  ~Loop() = default;
 
-             void unregister_(Event *&evt) final;
+  void register_(Event *&evt) final;
 
-             void modify(Event *&evt, int ev) final;
+  void unregister_(Event *&evt) final;
 
-             vector<Event *> poll() final;
-        };
+  void modify(Event *&evt, int ev) final;
+
+  vector<Event *> poll() final;
+};
 
 } // namespace angemon
 

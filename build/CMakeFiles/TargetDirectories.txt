@@ -1,0 +1,8 @@
+/Users/jiangtao/code/azure/angemon/build/CMakeFiles/rebuild_cache.dir
+/Users/jiangtao/code/azure/angemon/build/CMakeFiles/edit_cache.dir
+/Users/jiangtao/code/azure/angemon/build/CMakeFiles/angemon.dir
+/Users/jiangtao/code/azure/angemon/build/src/angemon/CMakeFiles/rebuild_cache.dir
+/Users/jiangtao/code/azure/angemon/build/src/angemon/CMakeFiles/edit_cache.dir
+/Users/jiangtao/code/azure/angemon/build/src/angemon/CMakeFiles/Loop.dir
+/Users/jiangtao/code/azure/angemon/build/src/angemon/CMakeFiles/Sock.dir
+/Users/jiangtao/code/azure/angemon/build/src/angemon/CMakeFiles/Req.dir
