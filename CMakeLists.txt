@@ -31,7 +31,7 @@ aux_source_directory(src DIR_SRCS)
 # 添加头文件路径
 include_directories(./ ${PROJECT_SOURCE_DIR}/src/angemon)
 #
-include_directories( "/usr/include/c++/")
+#include_directories( "/usr/include/c++/")
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/angemon)
 add_executable(angemon src/main.cpp)
 target_link_libraries(angemon  Sock Loop Req)
