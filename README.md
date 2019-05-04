@@ -1,8 +1,8 @@
 
 
-![logo](./Angemon)
+![logo](./Angemon.jpg)
 # Introduction
-![流程图](./mq.png)
+![即将开发的消息系统流程图](./mq.png)
 
 # Getting Started
 
