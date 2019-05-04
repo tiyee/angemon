@@ -1,7 +1,7 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-#include <cerrno>
+#include <errno>
 #include <cstddef>
 #include <ctime>
 #include <iostream>
