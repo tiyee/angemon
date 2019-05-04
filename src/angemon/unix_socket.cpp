@@ -29,7 +29,7 @@ namespace angemon {
 
         int fd = ::socket(AF_INET, SOCK_STREAM, 0);
         if (fd == -1) {
-            LOG_ERR("socket() failed: errno=%d msg=%s", errno, strerror(errno))
+            LOG_ERR("socket() failed: errno=%d msg=%s", errno, std::strerror(errno))
             return -1;
         }
 
