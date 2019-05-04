@@ -6,14 +6,14 @@ namespace angemon {
     namespace linux {
         Loop::Loop() {
             _efd = epoll_create(MAXEVENTS);
-            if (-1 == crRet) {
+            if (-1 == _efd) {
                 LOG_ERR("epoll create fail")
             }
 
 
         }
         void Loop::register_(Event *&evt) {
-            epoll_event * ev = new epoll_event;
+            epoll_event  ev ;
 
             ev.events = evt->ev_flags==E_READ?EPOLLIN:EPOLLOUT;
             ev.data.fd=evt->fd;
@@ -25,7 +25,7 @@ namespace angemon {
 
         }
         void Loop::unregister_(Event *&evt) {
-            delete evt->data;
+
             evt->data = nullptr;
             epoll_ctl(_efd,  EPOLL_CTL_DEL,evt->fd, nullptr);
             int fd_ = evt->fd;
@@ -33,9 +33,9 @@ namespace angemon {
             _active.erase(iter);
         }
         void Loop::modify(Event *&evt, int ev) {
-            auto ev = (epoll_event *)evt->data;
+             epoll_event  ev ;
             ev.events = evt->ev_flags==E_READ?EPOLLIN:EPOLLOUT;
-            epoll_ctl(_efd,  EPOLL_CTL_MOD,evt->fd, ev);
+            epoll_ctl(_efd,  EPOLL_CTL_MOD,evt->fd, &ev);
             evt->ev_flags = ev;
         }
         vector<Event*> Loop::poll() {
@@ -43,6 +43,7 @@ namespace angemon {
             int n =epoll_wait(_efd, events_in, MAXEVENTS,-1);
             std::vector<Event *> items;
             for (int i = 0; i < n; ++i) {
+                int fd = events_in[i].events.data.fd;
                if( events_in[i].events & EPOLLIN){
                    item = _active[fd];
                    item->ev_flags = E_READ;
