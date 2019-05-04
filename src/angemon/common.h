@@ -20,7 +20,7 @@
 #define LOG_ERR(...)                                                           \
   log_stderr_print(__FILE__, __func__, __LINE__, __VA_ARGS__);
 #endif
-using namespace std;
+
 void log_stderr_print(const char *filename, const char *func, int line,
                       const char *fmt, ...) {
   time_t now = time(nullptr);

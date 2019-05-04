@@ -6,7 +6,7 @@
 #include "pool.h"
 namespace angemon {
 namespace pools {
-
+using namespace std;
 using std::string;
 using std::vector;
 
