@@ -18,7 +18,7 @@ namespace event {
 * indicates that the event is not in the heap.
 */
    const int  E_OUT_OF_TIMERHEAP =0;
-};
+
 struct Event{
     const int fd;
     int  ev_flags;
