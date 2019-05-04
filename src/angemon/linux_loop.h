@@ -10,6 +10,7 @@ class Loop:public base::Loop
 private:
     map<int, Event *> _active;
     int _efd;
+    const int MAXEVENTS = 64;
 
 public:
     Loop();

@@ -1,3 +1,7 @@
+
+/**
+ * @link http://www.man7.org/linux/man-pages/man7/epoll.7.html
+ */
 #include "unix_loop.h"
 #include <sys/event.h>
 using angemon::event::E_READ;

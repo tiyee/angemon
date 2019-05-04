@@ -23,8 +23,9 @@ struct Event{
     const int fd;
     short ev_flags;
     Context* ctx;
+    void * data;
     std::function<int(Context*)> cb ;
-    Event(int fd_,short flag_):fd(fd_),ev_flags(flag_){};
+    Event(int fd_,short flag_):fd(fd_),ev_flags(flag_),ctx(nullptr),data(nullptr){};
 
 
 };

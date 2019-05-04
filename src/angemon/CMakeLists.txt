@@ -1,7 +1,13 @@
 aux_source_directory(. DIR_LIB_SRCS)
-
+if (CMAKE_HOST_APPLE)
 add_library(Sock  unix_socket.cpp unix_socket.h )
 add_library(Ep  loop.h unix_loop.cpp unix_Loop.h)
 add_library(Re  request.cpp request.h)
 
-
+elseif (CMAKE_HOST_UNIX)
+    add_library(Sock  unix_socket.cpp unix_socket.h )
+    add_library(Ep  loop.h linux_loop.cpp linux_Loop.h)
+    add_library(Re  request.cpp request.h)
+else (CMAKE_HOST_APPLE)
+    message(FATAL_ERROR "Platform not supported")
+endif (CMAKE_HOST_APPLE)

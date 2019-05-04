@@ -1,11 +1,12 @@
 #include "unix_socket.cpp"
-#include "unix_loop.cpp"
+#include "linux_loop.cpp"
+#include "loop.h"
 using namespace std;
-using angemon::base::Loop;
+using namespace angemon::base;
 using angemon::UnixSocket;
-using angemon::unix::UnixLoop;
+using namespace angemon::linux;
 int main() {
- Loop * loop_ = new  UnixLoop();
+ angemon::base::Loop * loop_ = new  angemon::linux::Loop();
   UnixSocket sock("127.0.0.1", 8001, loop_);
 
   int lfd = sock._create();

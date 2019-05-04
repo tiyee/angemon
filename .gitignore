@@ -76,3 +76,4 @@ Thumbs.db
 /cmake-build-debug
 CMakeLists.txt.user
 /.idea
+/lib
