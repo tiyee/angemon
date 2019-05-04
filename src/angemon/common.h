@@ -2,8 +2,8 @@
 #define COMMON_H
 
 #include <errno.h>
-#include <cstddef>
-#include <ctime>
+#include <stddef.h>
+#include <time.h>
 #include <iostream>
 #include <list>
 #include <map>
