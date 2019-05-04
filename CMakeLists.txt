@@ -5,16 +5,10 @@ set(CMAKE_C_STANDARD 11)
 SET(CMAKE_C_COMPILER "/usr/bin/clang")
 SET (CMAKE_CXX_COMPILER  "/usr/bin/clang++")
 set(CMAKE_CXX_FLAGS " -stdlib=libc++")
-SET (CMAKE_AR      "/usr/bin/llvm-ar")
-SET (CMAKE_LINKER  "/usr/bin/llvm-ld")
-SET (CMAKE_NM      "/usr/bin/llvm-nm")
-SET (CMAKE_OBJDUMP "/usr/bin/llvm-objdump")
-SET (CMAKE_RANLIB  "/usr/bin/llvm-ranlib")
 
 
-find_package(LLVM REQUIRED CONFIG)
-include_directories(${LLVM_INCLUDE_DIRS})
-add_definitions(${LLVM_DEFINITIONS})
+
+
 
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
@@ -37,14 +31,7 @@ link_directories(${PROJECT_SOURCE_DIR}/lib)
 aux_source_directory(src DIR_SRCS)
 # 添加头文件路径
 include_directories(./ ${PROJECT_SOURCE_DIR}/src/angemon)
-
-
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/angemon)
-
-
-llvm_map_components_to_libnames(llvm_libs support core irreader)
-
 add_executable(angemon ${DIR_SRCS})
 target_link_libraries(angemon  Sock Ep Re)
 
-target_link_libraries(angemon ${llvm_libs})
