@@ -6,7 +6,7 @@ add_library(Re  request.cpp request.h)
 
 elseif (CMAKE_HOST_UNIX)
     add_library(Sock  unix_socket.cpp unix_socket.h )
-    add_library(Ep  loop.h linux_loop.cpp linux_Loop.h)
+    add_library(Ep  loop.h linux_loop.cpp linux_loop.h)
     add_library(Re  request.cpp request.h)
 else (CMAKE_HOST_APPLE)
     message(FATAL_ERROR "Platform not supported")
