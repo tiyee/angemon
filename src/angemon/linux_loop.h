@@ -1,3 +1,7 @@
+/**
+ * @link http://www.man7.org/linux/man-pages/man7/epoll.7.html
+ */
+
 #ifndef LINUX_LOOP_H
 #define LINUX_LOOP_H
 #include"base_loop.h"

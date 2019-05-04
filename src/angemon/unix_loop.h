@@ -1,3 +1,7 @@
+
+/**
+ * @link https://www.freebsd.org/cgi/man.cgi?query=kqueue&sektion=2
+ */
 #ifndef UNIX_LOOP_H
 #define UNIX_LOOP_H
 

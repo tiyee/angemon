@@ -17,6 +17,7 @@ namespace angemon {
 
             _ev.events = evt->ev_flags==E_READ?EPOLLIN:EPOLLOUT;
             _ev.data.fd=evt->fd;
+            _ev.events|= EPOLLET;//边缘触发
             if(epoll_ctl(_efd, EPOLL_CTL_ADD, evt->fd, &_ev) != 0){
                LOG_ERR("epoll_ctl fail fd=%d",evt->fd)
                 return;
@@ -36,6 +37,7 @@ namespace angemon {
             LOG("modify")
 
             _ev.events = evn==E_READ?EPOLLIN:EPOLLOUT;
+            _ev.events|= EPOLLET;
             epoll_ctl(_efd,  EPOLL_CTL_MOD,evt->fd, &_ev);
             evt->ev_flags = evn;
         }
