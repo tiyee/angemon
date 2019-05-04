@@ -33,6 +33,7 @@ namespace angemon {
             _active.erase(iter);
         }
         void Loop::modify(Event *&evt, int evn) {
+            LOG("modify")
             struct epoll_event  ev ;
             ev.events = evn==E_READ?EPOLLIN:EPOLLOUT;
             epoll_ctl(_efd,  EPOLL_CTL_MOD,evt->fd, &ev);
