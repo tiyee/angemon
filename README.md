@@ -7,7 +7,7 @@
 # Getting Started
 
 1. 安装cmake，Macos:`brew install cmake` centos: `sudo yum install cmake`
-2. 安装编译器，Macos自带了，linux：`sudo yum -y install gcc gcc-c++`
+2. 安装编译器，Macos自带了clang++，linux：`sudo yum -y install gcc gcc-c++`
 
 
 # Build and Test

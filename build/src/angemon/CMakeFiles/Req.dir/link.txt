@@ -1,2 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/ar qc ../../../lib/libReq.a  CMakeFiles/Req.dir/request.cpp.o
-/Library/Developer/CommandLineTools/usr/bin/ranlib ../../../lib/libReq.a
