@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 2.8)
 project(angemon)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_C_STANDARD 11)
-SET(CMAKE_C_COMPILER "/usr/bin/clang")
-SET (CMAKE_CXX_COMPILER  "/usr/bin/clang++")
-set(CMAKE_CXX_FLAGS " -stdlib=libc++")
+#SET(CMAKE_C_COMPILER "/usr/bin/clang")
+#SET (CMAKE_CXX_COMPILER  "/usr/bin/clang++")
+#set(CMAKE_CXX_FLAGS " -stdlib=libc++")
 
 
 
