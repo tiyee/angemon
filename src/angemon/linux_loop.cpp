@@ -13,11 +13,11 @@ namespace angemon {
 
         }
         void Loop::register_(Event *&evt) {
-            epoll_event  ev ;
 
-            ev.events = evt->ev_flags==E_READ?EPOLLIN:EPOLLOUT;
-            ev.data.fd=evt->fd;
-            if(epoll_ctl(_efd, EPOLL_CTL_ADD, evt->fd, &ev) != 0){
+
+            _ev.events = evt->ev_flags==E_READ?EPOLLIN:EPOLLOUT;
+            _ev.data.fd=evt->fd;
+            if(epoll_ctl(_efd, EPOLL_CTL_ADD, evt->fd, &_ev) != 0){
                LOG_ERR("epoll_ctl fail fd=%d",evt->fd)
                 return;
             }
@@ -34,9 +34,9 @@ namespace angemon {
         }
         void Loop::modify(Event *&evt, int evn) {
             LOG("modify")
-            struct epoll_event  ev ;
-            ev.events = evn==E_READ?EPOLLIN:EPOLLOUT;
-            epoll_ctl(_efd,  EPOLL_CTL_MOD,evt->fd, &ev);
+
+            _ev.events = evn==E_READ?EPOLLIN:EPOLLOUT;
+            epoll_ctl(_efd,  EPOLL_CTL_MOD,evt->fd, &_ev);
             evt->ev_flags = evn;
         }
         vector<Event*> Loop::poll() {

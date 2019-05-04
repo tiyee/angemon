@@ -11,6 +11,7 @@ private:
     map<int, Event *> _active;
     int _efd;
     const int MAXEVENTS = 64;
+    epoll_event  _ev ;
 
 public:
     Loop();
