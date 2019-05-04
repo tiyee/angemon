@@ -5,7 +5,9 @@
 #include <sys/time.h>
 #include <unistd.h>
 #include <fcntl.h>
-
+#include <stdio.h>
+#include <string.h>
+#include <errno.h>
 using angemon::event::E_READ;
 using angemon::event::E_WRITE;
 namespace angemon {
@@ -29,7 +31,7 @@ namespace angemon {
 
         int fd = ::socket(AF_INET, SOCK_STREAM, 0);
         if (fd == -1) {
-            LOG_ERR("socket() failed: errno=%d msg=%s", errno, std::strerror(errno))
+            LOG_ERR("socket() failed: errno=%d msg=%s", errno, strerror(errno))
             return -1;
         }
 
