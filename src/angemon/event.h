@@ -12,7 +12,7 @@ namespace event {
    const int  E_TIMEOUT		=0x8;
  const int E_EDGE 		=	0x10;/* edge triggered */
  const int E_ONCE		=	0x20;/* one-time event */
- const int E_IN_REACTOR 	=0x40/* indicates whether the event is in the reactor */
+ const int E_IN_REACTOR 	=0x40;/* indicates whether the event is in the reactor */
 /*
 * The timer event's initial timerheap_idx value,
 * indicates that the event is not in the heap.
