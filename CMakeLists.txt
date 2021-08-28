@@ -22,7 +22,7 @@ set(ENV{CMAKE_FIND_LIBRARY_SUFFIXES} ".a")
 include(cmake/Jemalloc.cmake)
 include(cmake/GoogleTest.cmake)
 
-include_directories(${DEP_ROOT_DIR}/${JEMALLOC_NAME}/include/jemalloc)
+include_directories(${DEP_ROOT_DIR}/${JEMALLOC_NAME}/include)
 include_directories(${DEP_ROOT_DIR}/${GTEST_NAME}/googletest/include)
 link_directories(${DEP_ROOT_DIR}/${JEMALLOC_NAME}/lib)
 link_directories(${DEP_ROOT_DIR}/${GTEST_NAME}/googletest/build)
@@ -34,6 +34,7 @@ FILE(GLOB SRC_FILES src/*.cpp )
 FILE(GLOB TEST_FILES tests/*.cpp)
 FILE(GLOB SRC_INCLUDE_FILES src/*.h )
 
+add_definitions("-D__JEMALLOC__")
 include_directories(src)
 
 
@@ -54,8 +55,6 @@ target_compile_definitions(
 set(CORE_LIBS  ${JEMALLOC_LIBRARIES}
         pthread dl )
 
-message(STATUS "11 "  ${JEMALLOC_LIBRARIES})
-message(STATUS "11 "  ${CMAKE_BINARY_DIR})
 target_link_libraries(${PROJECT_NAME} ${CORE_LIBS})
 
 target_link_libraries(${PROJECT_NAME}-test ${CORE_LIBS} gtest gtest_main)
