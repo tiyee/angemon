@@ -28,7 +28,7 @@ namespace angemon {
 
         void Reset();
 
-        void ReadLastAll(uchar_t *buff);
+        void ReadLastAll(uchar_t *&buff);
 
         size_t GetWritableSize() const { return _capacity - _size; };
 
