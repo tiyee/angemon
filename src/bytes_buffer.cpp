@@ -74,7 +74,7 @@ angemon::BytesBuffer::BytesBuffer(uchar_t *buff, size_t len) : _m_buffer(buff), 
 
 }
 
-void angemon::BytesBuffer::ReadLastAll(uchar_t *buff) {
+void angemon::BytesBuffer::ReadLastAll(uchar_t *&buff) {
     auto size = _size - _pos;
     buff = (uchar_t *) malloc(size);
     Read(buff, size);
