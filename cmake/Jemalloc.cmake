@@ -39,29 +39,3 @@ if (NOT EXISTS ${DEP_ROOT_DIR}/${JEMALLOC_NAME}/lib/libjemalloc.a)
     endif ()
 endif ()
 
-
-#
-#include(ExternalProject)
-#
-#set(JEMALLOC_VERSION 5.2.1)
-#set(JEMALLOC_NAME jemalloc-${JEMALLOC_VERSION})
-#
-#
-#set(JEMALLOC_ROOT          ${DEP_ROOT_DIR}/xxx/${JEMALLOC_NAME})
-#
-#
-#set(JEMALLOC_URL           https://github.com/jemalloc/jemalloc/archive/${JEMALLOC_VERSION}.zip)
-#set(JEMALLOC_CONFIGURE     mkdir -p ${JEMALLOC_ROOT}/src/snappy && cd ${JEMALLOC_ROOT}/src/snappy && cmake -D CMAKE_INSTALL_PREFIX=${JEMALLOC_ROOT} .)
-#
-#
-#ExternalProject_Add(snappy
-#        URL                   ${JEMALLOC_URL}
-#        DOWNLOAD_DIR         ${JEMALLOC_ROOT}
-#        DOWNLOAD_NAME         ${JEMALLOC_NAME}.zip
-#        SOURCE_DIR           ${JEMALLOC_ROOT}/src
-#        URL_MD5               4448f59c2716efe94018054961ae12ed
-#        PREFIX                ${JEMALLOC_ROOT}
-#        CONFIGURE_COMMAND     autogen.sh
-#        BUILD_COMMAND         make
-#        INSTALL_COMMAND       make install
-#        )
